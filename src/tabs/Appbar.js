@@ -60,17 +60,20 @@ const { Search } = Input;
       <Image
   
     src={couverture}
-    style={{widht:"200vh",height:"80vh",position:"fixed",marginLeft:10,marginRight:10}}
+    width={"50%"}
+    style={{widht:"100vh",marginLeft:30,marginRight:30}}
     
     
   />
 
-<Title style={{marginTop:-40,marginLeft:80}} level={2}>Bienvenue chez Elegance'Shop</Title>
+<Title style={{marginTop:-10}} level={2}>Bienvenue chez Elegance'Shop</Title>
         
           </Content>
         </Layout>
       </Layout>
     );
   };
+
+  
   
   export default Appbar;
