@@ -1,11 +1,15 @@
 
-  import { Layout, Menu } from 'antd';
+  import { Layout, Menu,Col, Row } from 'antd';
   import { Carousel } from 'antd';
   import React from 'react';
   import 'antd/dist/antd.css';
   import { Card } from 'antd';
   import { Image } from 'antd';
   import couverture from '../assets/couverture.jpg';
+  import soie1 from '../assets/soie1.jpeg';
+  import soie2 from '../assets/soie2.jpeg';
+  import soie3 from '../assets/soie3.jpeg';
+  import soie4 from '../assets/soie4.jpeg';
 
   import { Input } from 'antd';
   import { Typography } from 'antd';
@@ -66,8 +70,84 @@ const { Search } = Input;
     
   />
 
-<Title style={{marginTop:-10}} level={2}>Bienvenue chez Elegance'Shop</Title>
+<Title style={{marginTop:"3%",textAlign:"center"}} level={2}>Bienvenue chez Elegance'Shop</Title>
+
+<div className="site-card-wrapper" style={{marginTop:"3%"}}>
+    <Row gutter={16}>
+      <Col span={8}>
+        <Image
         
+        src={soie1}
+    width={"50%"}
+    style={{marginLeft:20,marginRight:20}}
+         
+        />
+ <Input placeholder="12000F" style={{marginTop:"2%",width:"20",marginLeft:"30",color:""}} />
+      </Col>
+
+      <Col span={8}>
+        <Image
+        
+        src={soie2}
+    width={"50%"}
+    style={{marginLeft:30,marginRight:20}}
+         
+        />
+      </Col>
+      <Col span={8}>
+       
+        <Image
+        
+        src={soie3}
+    width={"50%"}
+    style={{marginLeft:20,marginRight:20}}
+         
+        />
+       
+      </Col>
+
+      
+    </Row>
+  </div>
+
+  <div className="site-card-wrapper" style={{marginTop:"3%"}}>
+    <Row gutter={16}>
+      <Col span={8}>
+        <Image
+        
+        src={soie1}
+    width={"50%"}
+    style={{marginLeft:20,marginRight:20}}
+         
+        />
+
+      </Col>
+
+      <Col span={8}>
+        <Image
+        
+        src={soie2}
+    width={"50%"}
+    style={{marginLeft:30,marginRight:20}}
+         
+        />
+      </Col>
+      <Col span={8}>
+       
+        <Image
+        
+        src={soie3}
+    width={"50%"}
+    style={{marginLeft:20,marginRight:20}}
+         
+        />
+       
+      </Col>
+
+      
+    </Row>
+  </div>
+
           </Content>
         </Layout>
       </Layout>
