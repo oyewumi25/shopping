@@ -1,17 +1,17 @@
 
 import './App.css';
-// import Navbar from './tabs/Navbar';
-import Appbar from './tabs/Appbar';
+import React from 'react';
 
+//import Appbar from './tabs/Appbar';
+import Robes from './tabs/Robes'
 
 
 function App() {
   return (
     <div >
-   
-        <Appbar/>
-       {/* <Navbar/> */}
-     
+        
+        <Robes/>
+      
     </div>
   );
 }
