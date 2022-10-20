@@ -2,15 +2,14 @@
 import './App.css';
 import React from 'react';
 
-//import Appbar from './tabs/Appbar';
-import Robes from './tabs/Robes'
+import Appbar from './tabs/Appbar';
+
 
 
 function App() {
   return (
     <div >
-        
-        <Robes/>
+        <Appbar/>
       
     </div>
   );
