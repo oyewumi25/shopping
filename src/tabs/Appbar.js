@@ -290,9 +290,9 @@ const { Search } = Input;
       <Col span={8}>
       <Title level={4} style={{marginLeft:"-10%",marginTop:15,color:"white"}}>Suivez-nous</Title> 
       <Title level={5} style={{marginLeft:"-10%",marginTop:15,color:"white"}}>sur nos reseaux sociaux</Title> 
-      <div style={{color:"white",widht:"80vh",display:"flex"}}>
-      <FacebookOutlined style={{marginleft:"5%"}}/>
-      <TwitterOutlined/>
+      <div style={{color:"white",widht:"80vh",display:"flex",margin:"5px"}}>
+      <FacebookOutlined />
+      <TwitterOutlined />
       <InstagramOutlined/>
       <WhatsAppOutlined />
       <Divider Style= {{color:"white"}} mode="vertical"/>

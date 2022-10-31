@@ -1,6 +1,7 @@
 
 import React, { Component } from "react";
 import { Card, Input, Space} from "antd";
+import { BellOutlined } from '@ant-design/icons';
 import { DisplayButton } from "../librairy/Button";
 import { validatorConnect } from "../functions/validator-connect";
 import { sessionHandler } from "../functions/sessionStore";
@@ -9,11 +10,15 @@ import { keyCredential, token } from "../constants/credential";
 import { addUserData } from "../store/actions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { Typography } from 'antd';
 import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
+const { Title } = Typography;
 
-class Login extends Component {
+class Log extends Component {
   state = {
     email: "email",
+    nom: "nom",
+    prenom: "prenom",
     password: "password",
     alert: false,
     alertText: "Renseignez les champs svp!",
@@ -27,10 +32,10 @@ class Login extends Component {
   };
 
   handleConnect = async () => {
-    const { email, password } = this.state;
+    const { email, password ,nom,prenom} = this.state;
 
-    if (!validatorConnect(email, password)) {
-      return openNotification ("warning", "email ou mot de passe incorrect")    
+    if (!validatorConnect(email, password,nom,prenom)) {
+      return openNotification ("warning", "email,nom,prenom ou mot de passe incorrect")    
     
     }
     
@@ -57,38 +62,52 @@ class Login extends Component {
       return <Redirect to="/Appbar" />;
     }
     return (
-      <div className="site-card-border-less-wrapper" style={{backgroundColor:"",height:""}}>
+      <div className="site-card-border-less-wrapper" style={{marginTop:"10%",marginLeft:"60%"}}>
 
       
-        <Card
-          bordered={true}
-          style={{
-           
-            width: "27%",
-            backgroundColor: " #4169E1",
-            marginLeft: "38%",
-            marginTop: "10%",
-          }}
-        >
-          <Space direction="vertical" >
+        
+         
+            <Space direction="vertical" >
+                <div style={{marginLeft:"20px"}}>
+                <BellOutlined style={{marginLeft:"110%",fontSize:"200%",color:"#191970"}} />
+                <Title  level={3}  >S'inscrire à la newsletter</Title>
+                </div>
+                <h3 style={{marginLeft:"70px"}}>S'inscrire à la newsletter</h3>
             <Input
               size="large"
-              placeholder="email"
-              name="email"
+              placeholder="nom"
+              name="nom"
               onChange={(e) => this.setState({ email: e.target.value })}
-              suffix={<UserOutlined style={{ color: "gray" }} />}
-              style={{ width: "100%", marginLeft: "48%" }}
-            />
+             
+              style={{ width: "150%", height:"60px", marginLeft: "48%", marginTop:"33px",borderRadius:"10px"}}
+            /> 
+
+            <Input
+              size="large"
+              placeholder="prenom"
+              name="prenom"
+              onChange={(e) => this.setState({ email: e.target.value })}
+              
+              style={{ width: "150%",  height:"60px",marginLeft: "48%" ,marginTop:"33px",borderRadius:"10px"}}
+            />         
             
             <Input.Password
-              placeholder="password"
+              placeholder="email"
               size="large"
-              name="password"
+              name="email"
               onChange={(e) => this.setState({ password: e.target.value })}
               iconRender={(visible) =>
                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
               }
-              style={{ width: "100%", marginLeft: "48%" }}
+              style={{ width: "150%",height:"60px" ,marginLeft: "48%" ,marginTop:"33px",borderRadius:"10px"}}
+            />
+            
+            <Input
+              size="large"
+              placeholder=""
+              name="email"
+              onChange={(e) => this.setState({ email: e.target.value })}
+              style={{ width: "150%", marginLeft: "48%" , height:"60px",marginTop:"33px",borderRadius:"10px"}}
             />
 
             <DisplayButton
@@ -96,10 +115,11 @@ class Login extends Component {
               disabled={false}
               text={"Connect"}
               onPress={() => this.handleConnect()}
-              style={{ width: "100%", height: 50, marginLeft: "48%", paddingTop: "6px" }}
+              style={{ width: "150%", height:"60px", marginLeft: "48%", paddingTop: "6px",marginTop:"33px", 
+              backgroundColor:"#191970",color:"white",borderRadius:"10px"}}
             />
           </Space>
-        </Card>
+        
       </div>
     );
   }
@@ -116,7 +136,7 @@ const mapDispatchStoreToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchStoreToProps)(Login);
+export default connect(mapStateToProps, mapDispatchStoreToProps)(Log);
 
 
 
