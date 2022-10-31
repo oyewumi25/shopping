@@ -11,6 +11,10 @@ import { addUserData } from "../store/actions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Typography } from 'antd';
+import { Image } from 'antd';
+import image from '../assets/image.jpeg';
+
+  
 import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 
@@ -35,7 +39,7 @@ class Log extends Component {
     const { email, password ,nom,prenom} = this.state;
 
     if (!validatorConnect(email, password,nom,prenom)) {
-      return openNotification ("warning", "email,nom,prenom ou mot de passe incorrect")    
+      return openNotification ("warning", "Veuillez renseigner les champs")    
     
     }
     
@@ -68,9 +72,17 @@ class Log extends Component {
         
          
             <Space direction="vertical" >
+            
                 <div style={{marginLeft:"20px"}}>
                 <BellOutlined style={{marginLeft:"110%",fontSize:"200%",color:"#191970"}} />
                 <Title  level={3}  >S'inscrire à la newsletter</Title>
+                <Image
+        
+            src={image}
+            width={"50%"}
+            style={{float:"left"}}
+
+            />
                 </div>
                 <h3 style={{marginLeft:"70px"}}>S'inscrire à la newsletter</h3>
             <Input
