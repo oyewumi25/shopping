@@ -9,6 +9,7 @@ import { keyCredential, token } from "../constants/credential";
 import { addUserData } from "../store/actions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Helmet from 'react-helmet';
 import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 
 class Login extends Component {
@@ -22,7 +23,8 @@ class Login extends Component {
   };
 
   closeAlert = () => {
-    return this.setState({                                                                                                                    
+    return this.setState({
+      alert: false
     });
   };
 
@@ -54,20 +56,19 @@ class Login extends Component {
       sessionHandler("auth_token", null, "get") &&
       sessionHandler("auth_token", null, "get").length !== 0
     ) {
-      return <Redirect to="/Appbar" />;
+      return <Redirect to= "/Robes"/>;
     }
     return (
-      <div className="site-card-border-less-wrapper" style={{backgroundColor:"",height:""}}>
-
+      <div className="site-card-border-less-wrapper">
+         <Helmet bodyAttributes={{style: 'background-color : #FFDEAD'}}/>
       
         <Card
           bordered={true}
           style={{
-           
-            width: "27%",
-            backgroundColor: " #4169E1",
-            marginLeft: "38%",
-            marginTop: "10%",
+            width: "20%",
+            backgroundColor: " #D2B48C",
+            marginLeft: "40%",
+            marginTop: "17%",
           }}
         >
           <Space direction="vertical" >
@@ -77,9 +78,8 @@ class Login extends Component {
               name="email"
               onChange={(e) => this.setState({ email: e.target.value })}
               suffix={<UserOutlined style={{ color: "gray" }} />}
-              style={{ width: "100%", marginLeft: "48%" }}
+              style={{ width: "110%", marginLeft: "23%" }}
             />
-            
             <Input.Password
               placeholder="password"
               size="large"
@@ -88,7 +88,7 @@ class Login extends Component {
               iconRender={(visible) =>
                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
               }
-              style={{ width: "100%", marginLeft: "48%" }}
+              style={{ width: "110%", marginLeft: "23%" }}
             />
 
             <DisplayButton
@@ -96,7 +96,7 @@ class Login extends Component {
               disabled={false}
               text={"Connect"}
               onPress={() => this.handleConnect()}
-              style={{ width: "100%", height: 50, marginLeft: "48%", paddingTop: "6px" }}
+              style={{ width: "110%", height: 45, marginLeft: "23%", paddingTop: "6px",color:"gray" }}
             />
           </Space>
         </Card>
@@ -104,6 +104,7 @@ class Login extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {};
 };

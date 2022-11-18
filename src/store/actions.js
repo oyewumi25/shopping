@@ -9,4 +9,5 @@ const removeUserData = () => ({
   type: LOGOUT_USER
 });
 
-export { addUserData, removeUserData };
+
+export { addUserData, removeUserData};

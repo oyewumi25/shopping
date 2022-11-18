@@ -7,12 +7,18 @@ import { validatorConnect } from "../functions/validator-connect";
 import { sessionHandler } from "../functions/sessionStore";
 import { openNotification }from "../functions/notification";
 import { keyCredential, token } from "../constants/credential";
-import { addUserData } from "../store/actions";
+import {
+  addUserData,
+  removeUserData
+} from "../store/actions";
+
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { Typography } from 'antd';
 import { Image } from 'antd';
 import image from '../assets/image.jpeg';
+import Helmet from 'react-helmet';
+
 
   
 import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
@@ -20,71 +26,77 @@ const { Title } = Typography;
 
 class Log extends Component {
   state = {
-    email: "email",
+   numero: "numero",
     nom: "nom",
     prenom: "prenom",
     password: "password",
     alert: false,
+    access:false,
     alertText: "Renseignez les champs svp!",
     alertType: "warning",
 
   };
 
+  componentDidMount() {
+    this.props.removeData();
+    this.props.removeAnswers();
+  }
+
   closeAlert = () => {
-    return this.setState({                                                                                                                    
+    return this.setState({
+      alert: false
     });
   };
 
   handleConnect = async () => {
-    const { email, password ,nom,prenom} = this.state;
+    const { nom, prenom, numero } = this.state;
 
-    if (!validatorConnect(email, password,nom,prenom)) {
-      return openNotification ("warning", "Veuillez renseigner les champs")    
-    
+    if (nom.length === 0 || prenom.length === 0) {
+      return openNotification("error", "Remplissez tous les champs ");
     }
-    
+    if (numero.length !== 8) {
+      return openNotification("error", "Le numéro doit être de 8 chiffres");
+    }
     await this.props.saveData({
-      email: email,
-      password: password,
-      token: token
+      nom: nom,
+      prenom: prenom,
+      numero: numero
     });
-
     await sessionHandler("auth_token", keyCredential, "set");
     this.setState({
       alert: true,
       alertType: "success",
       alertText: "Vous êtes connecté",
+      access: true
     });
   };
   render() {
-    const { alert, alertText, alertType } = this.state;
-
-    if (
-      sessionHandler("auth_token", null, "get") &&
-      sessionHandler("auth_token", null, "get").length !== 0
-    ) {
+    if (this.state.access=== true) {
       return <Redirect to="/Appbar" />;
     }
     return (
       <div className="site-card-border-less-wrapper" style={{marginTop:"10%",marginLeft:"60%"}}>
-
+        <Helmet bodyAttributes={{style: 'background-color : #FFDEAD'}}/>
       
         
          
-            <Space direction="vertical" >
+            <Space direction="vertical">
             
                 <div style={{marginLeft:"20px"}}>
                 <BellOutlined style={{marginLeft:"110%",fontSize:"200%",color:"#191970"}} />
-                <Title  level={3}  >S'inscrire à la newsletter</Title>
+                <Title  level={3}  ></Title>
                 <Image
-        
+                
+              
+                
             src={image}
             width={"50%"}
-            style={{float:"left"}}
+            style={{float:"left",marginLeft:"-300%"}}
 
             />
                 </div>
-                <h3 style={{marginLeft:"70px"}}>S'inscrire à la newsletter</h3>
+                <h3 style={{marginLeft:"70px"}}></h3>
+                
             <Input
               size="large"
               placeholder="nom"
@@ -104,9 +116,9 @@ class Log extends Component {
             />         
             
             <Input.Password
-              placeholder="email"
+              placeholder="numéro"
               size="large"
-              name="email"
+              name="numero"
               onChange={(e) => this.setState({ password: e.target.value })}
               iconRender={(visible) =>
                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
@@ -144,7 +156,11 @@ const mapDispatchStoreToProps = (dispatch) => {
   return {
     saveData: (data) => {
       dispatch(addUserData(data));
+    },
+    removeData: () => {
+      dispatch(removeUserData());
     }
+    
   };
 };
 
